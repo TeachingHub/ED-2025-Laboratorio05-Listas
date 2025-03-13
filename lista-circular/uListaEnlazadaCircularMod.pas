@@ -11,6 +11,8 @@ type
         sig: ^nodo; // Puntero al siguiente nodo
     end;
 
+    Pnodo = ^nodo;
+
     tListaCircular = record
         last: ^nodo; // Puntero al último nodo de la lista
     end;
@@ -23,16 +25,14 @@ type
     procedure insert_at_end(var list: tListaCircular; x: integer);
     procedure insert_at_begin(var list: tListaCircular; x: integer);
     procedure delete(var list: tListaCircular; x: integer);
-    function in_list(list: tListaCircular; x: integer): boolean;
+    function in_list(list: tListaCircular; x: integer): boolean; // Corrected declaration
 
     {Otras operaciones}
     function to_string(list: tListaCircular): string;
-    { Ejercicio 8 }
-    function to_string_rec(list: tListaCircular): string;
+    function to_string_rec(list: tListaCircular): string; // Nueva función recursiva toString
     procedure clear(var list: tListaCircular);
     function num_elems(list: tListaCircular): integer;
-    { Ejercicio 8 }
-    function num_elems_rec(list: tListaCircular): integer;
+    function num_elems_rec(list: tListaCircular): integer; // Función recursiva num_elems
     procedure copy(list: tListaCircular; var c2: tListaCircular);
 
 implementation
@@ -171,9 +171,45 @@ implementation
     end;
 
 
-    function to_string_rec(list: tListaCircular): string;
+    function to_string_rec_aux(current_node: Pnodo; start_node: Pnodo; accumulated_string: string): string;
     begin
-        WriteLn('No implementado');
+        to_string_rec_aux := accumulated_string + IntToStr(current_node^.info) + ' '; // Primero procesa el nodo actual
+        if current_node^.sig = start_node then // Condición de parada: el siguiente nodo es el inicio
+            begin
+            to_string_rec_aux := accumulated_string + IntToStr(current_node^.info) + ' '; // Añade el último nodo y retorna
+            end
+        else
+            to_string_rec_aux := to_string_rec_aux(current_node^.sig, start_node, accumulated_string + IntToStr(current_node^.info) + ' '); // Recursion
+    end;
+
+
+
+    { Otra forma de hacer la función recursiva , con una llamada adicional e iterando sobre los nodos }
+    function to_string_rec_2(list: tListaCircular): string;
+    begin
+        if is_empty(list) then
+            to_string_rec_2 := ''
+        else
+            to_string_rec_2 := to_string_rec_aux(list.last^.sig, list.last^.sig, '');
+    end;
+
+
+    { Otra forma de hacer la función recursiva, cambiando los manejadores de la lista }
+    function to_string_rec(list: tListaCircular): string;
+    var
+        aux : ^nodo;
+    begin
+        if is_empty(list) then // Caso base: lista vacía
+            to_string_rec := ''
+        else if list.last^.sig = list.last then // Caso base: lista con un solo nodo
+            to_string_rec := IntToStr(list.last^.info) + ' '
+        else
+        begin
+            aux := list.last^.sig; // almacena el nodo actual
+            list.last^.sig := list.last^.sig^.sig; // Avanza al siguiente nodo
+            to_string_rec := IntToStr(aux^.info) + ' ' +  to_string_rec(list); // Concatena la información
+            list.last^.sig := aux; // Restaura el nodo actual
+        end;
     end;
 
 
@@ -211,11 +247,22 @@ implementation
     end;
 
 
+    function num_elems_rec_aux(current_node: Pnodo; start_node: Pnodo; count: integer): integer;
+    begin
+        count := count + 1; // Incrementa el contador para el nodo actual
+        if current_node^.sig = start_node then // Condición de parada: el siguiente nodo es el inicio
+            num_elems_rec_aux := count
+        else
+            num_elems_rec_aux := num_elems_rec_aux(current_node^.sig, start_node, count); // Recursion
+    end;
 
-    { Ejercicio 8 }
+
     function num_elems_rec(list: tListaCircular): integer;
     begin
-        WriteLn('No implementado');
+        if is_empty(list) then
+            num_elems_rec := 0
+        else
+            num_elems_rec := num_elems_rec_aux(list.last^.sig, list.last^.sig, 0);
     end;
 
 

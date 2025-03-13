@@ -1,4 +1,4 @@
-program listas_ej12;
+program listas_ej9;
 
 uses uListaEnlazadaCircular;
 
@@ -11,8 +11,27 @@ begin
 end;
 
 procedure eliminar_duplicados(var list: tListaCircular);
+var
+    first_element, current_element: integer;
+    num_elements_original, i: integer;
+    processed_count: integer;
 begin
-    WriteLn('No implementado');
+    first_element := first(list);
+    if not is_empty(list) then
+    repeat
+
+        current_element := first(list);
+        delete(list, current_element);
+
+        while in_list(list, current_element) do
+        begin
+            delete(list, current_element);
+        end;
+
+        insert_at_end(list, current_element);
+
+    until first(list) = first_element;
+
 end;
 
 
