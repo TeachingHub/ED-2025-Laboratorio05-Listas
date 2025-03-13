@@ -15,8 +15,50 @@ end;
     Las listas originales no deben ser modificadas.
 }
 procedure unir_listas_ordenadas(var lista1, lista2, lista_resultante: tListaSimple);
+var
+    lista1_aux, lista2_aux: tListaSimple;
+    elem1, elem2: integer;
 begin
-    WriteLn('No implementado');
+    initialize(lista_resultante);
+    initialize(lista1_aux);
+    initialize(lista2_aux);
+
+
+    while not is_empty(lista1) and not is_empty(lista2) do
+    begin
+        elem1 := first(lista1);
+        elem2 := first(lista2);
+
+        if elem1 < elem2 then
+        begin
+            insert_at_end(lista_resultante, elem1);
+            delete_at_begin(lista1);
+            insert_at_end(lista1_aux, elem1);
+        end
+        else
+        begin
+            insert_at_end(lista_resultante, elem2);
+            delete_at_begin(lista2);
+            insert_at_end(lista2_aux, elem2);
+        end;
+    end;
+
+    while not is_empty(lista1) do
+    begin
+        insert_at_end(lista_resultante, first(lista1));
+        insert_at_end(lista1_aux, first(lista1));
+        delete_at_begin(lista1);
+    end;
+
+    while not is_empty(lista2) do
+    begin
+        insert_at_end(lista_resultante, first(lista2));
+        insert_at_end(lista2_aux, first(lista2));
+        delete_at_begin(lista2);
+    end;
+
+    lista1 := lista1_aux;
+    lista2 := lista2_aux;
 end;
 
 

@@ -17,8 +17,23 @@ end;
     La lista original no debe ser modificada.
 }
 procedure dividir_lista_en_pares_e_impares(var list: tListaSimple; var pares, impares: tListaSimple);
+var
+    aux: tListaSimple;
 begin
-    WriteLn('No implementado');
+    initialize(pares);
+    initialize(impares);
+    initialize(aux);
+
+    while not is_empty(list) do
+    begin
+        if first(list) mod 2 = 0 then
+            insert_at_end(pares, first(list))
+        else
+            insert_at_end(impares, first(list));
+        insert_at_end(aux, first(list));
+        delete_at_begin(list);
+    end;
+    list := aux;
 end;
 
 
