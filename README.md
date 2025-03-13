@@ -12,8 +12,9 @@
 
 
 # Tabla de contenidos
-
-<!-- TOC -->
+- [Ejercicios de Listas: Lista Simple, Lista Circular y Lista Doblemente Enlazada](#ejercicios-de-listas-lista-simple-lista-circular-y-lista-doblemente-enlazada)
+        - [Información del Proyecto](#informaci%C3%B3n-del-proyecto)
+- [Tabla de contenidos](#tabla-de-contenidos)
 - [¿Cómo enfrentarse a los ejercicios?](#%C2%BFc%C3%B3mo-enfrentarse-a-los-ejercicios)
 - [Ejercicios con Listas Enlazadas Simples](#ejercicios-con-listas-enlazadas-simples)
     - [Ejercicio 1: Cálculo de la complejidad en notación O grande](#ejercicio-1-c%C3%A1lculo-de-la-complejidad-en-notaci%C3%B3n-o-grande)
@@ -28,8 +29,13 @@
         - [Función to_string_recc](#funci%C3%B3n-to_string_recc)
         - [Función num_elems_recc](#funci%C3%B3n-num_elems_recc)
     - [Ejercicio 9: Eliminar los duplicados de una lista enlazada circular](#ejercicio-9-eliminar-los-duplicados-de-una-lista-enlazada-circular)
+- [Ejercicios con Listas Doblemente Enlazadas](#ejercicios-con-listas-doblemente-enlazadas)
+    - [Ejercicio 10: Instrucciones guiadas - Listas Doblemente Enlazadas](#ejercicio-10-instrucciones-guiadas---listas-doblemente-enlazadas)
+    - [Ejercicio 11: Implementar la función GetAt en la unidad de lista doblemente enlazada](#ejercicio-11-implementar-la-funci%C3%B3n-getat-en-la-unidad-de-lista-doblemente-enlazada)
+    - [Ejercicio 12: Eliminar el elemento del medio en una lista doblemente enlazada](#ejercicio-12-eliminar-el-elemento-del-medio-en-una-lista-doblemente-enlazada)
+    - [Ejercicio 13: Insertar un elemento en una lista doblemente enlazada ordenada](#ejercicio-13-insertar-un-elemento-en-una-lista-doblemente-enlazada-ordenada)
+    - [Ejercicio 14: Una aplicación de listas de listas doblemente enlazadas](#ejercicio-14-una-aplicaci%C3%B3n-de-listas-de-listas-doblemente-enlazadas)
 
-<!-- /TOC -->
 
 # ¿Cómo enfrentarse a los ejercicios?
 
@@ -556,4 +562,381 @@ Resultado Test 5:
   Test 5: Lista original: , Resultado esperado:  -> bien.
 Resultado Test 6: 1 
   Test 6: Lista original: 1 1 1 1 1 , Resultado esperado: 1  -> bien.
+```
+
+
+
+# Ejercicios con Listas Doblemente Enlazadas
+
+## Ejercicio 10: Instrucciones guiadas - Listas Doblemente Enlazadas
+
+En este ejercicio, trabajaremos con operaciones básicas de la lista doblemente enlazada.
+
+- `uListaEnlazadaDoble.pas`: Implementación de la lista doblemente enlazada. Este fichero contiene la implementación de la lista doblemente enlazada que se utilizará en este ejercicio. No es necesario modificar este archivo.
+- `listas_ej10.pas`: Programa principal que utiliza la lista doblemente enlazada. Este es el fichero en el que deberás realizar las implementaciones necesarias.
+
+¿Qué rol tendremos en este ejercicio? Estaremos utilizando la lista doblemente enlazada para realizar operaciones básicas. Por lo tanto, tendremos el "rol" de usuario externo de la unidad. No modificaremos la implementación de la lista doblemente enlazada, sino que utilizaremos las operaciones básicas que nos proporciona.
+
+Realiza las siguientes operaciones sobre listas doblemente enlazadas y verifica el estado resultante:
+
+1. **Inicialización de la lista**
+  - Crear una lista vacía.
+  - Estado esperado: `[]`
+
+2. **Verificar si la lista está vacía**
+  - Comprobar si la lista está vacía.
+  - Estado esperado: `La lista doble está vacía.`
+
+3. **Inserción de elementos al final**
+  - Insertar en orden: `10`, `20`, `30` (siempre al final).
+  - Estado esperado: `[10, 20, 30]`
+
+4. **Inserción de elementos al inicio**
+  - Insertar en orden: `5`, `1` (siempre al inicio).
+  - Estado esperado: `[1, 5, 10, 20, 30]`
+
+5. **Obtener el primer y último elemento**
+  - Obtener el primer elemento (`1`) y el último elemento (`30`).
+  - Estado esperado: La lista no cambia: `[1, 5, 10, 20, 30]`
+
+6. **Verificar si un elemento está en la lista**
+  - Verificar si el elemento `20` está en la lista.
+  - Resultado esperado: `20 está en la lista.`
+  - Verificar si el elemento `40` está en la lista.
+  - Resultado esperado: `40 no está en la lista.`
+
+7. **Eliminar elementos del final de la lista**
+  - Eliminar el último elemento.
+  - Estado esperado: `[1, 5, 10, 20]`
+
+8. **Eliminar elementos del inicio de la lista**
+  - Eliminar el primer elemento.
+  - Estado esperado: `[5, 10, 20]`
+
+9. **Contar el número de elementos**
+  - Contar el número de elementos en la lista.
+  - Resultado esperado: `Número de elementos en la lista doble: 3`
+
+10. **Copiar la lista doble**
+  - Crear una copia de la lista.
+  - Estado esperado:
+    - Lista original: `[5, 10, 20]`
+    - Lista copia: `[5, 10, 20]`
+
+11. **Limpiar la lista doble original**
+  - Limpiar la lista original.
+  - Estado esperado:
+    - Lista original: `[]`
+    - Lista copia: `[5, 10, 20]`
+
+12. **Verificar si la lista original está vacía después de limpiar**
+  - Comprobar si la lista original está vacía.
+  - Resultado esperado: `La lista doble original está vacía después de limpiar.`
+
+13. **La lista copia debe seguir existiendo**
+  - Verificar el estado de la lista copia.
+  - Estado esperado: `[5, 10, 20]`
+
+  ## Ejercicio 11: Implementar la función GetAt en la unidad de lista doblemente enlazada
+
+  En este ejercicio, añadiremos una nueva funcionalidad a la lista doblemente enlazada. Concretamente, implementaremos la función `get_at` que permitirá obtener el valor de un elemento en una posición específica de la lista. Consideraremos que las posiciones de los elementos son las siguientes: elemento al principio posición 1, siguiente elemento posición 2, etc.
+
+  Para realizar este ejercicio, se proporcionan los siguientes archivos:
+  - `uListaEnlazadaDobleGetAt.pas`: Implementación de la lista doblemente enlazada. Este fichero contiene la implementación de la lista doblemente enlazada que se utilizará en este ejercicio. Deberás modificar este archivo para añadir la nueva funcionalidad.
+  - `listas_ej11.pas`: Programa principal que utiliza la lista doblemente enlazada. No es necesario modificar este archivo.
+
+  ¿Qué rol debes asumir en este ejercicio? Dado que estamos añadiendo nueva funcionalidad a la lista doblemente enlazada, tu "rol" es el de implementador del TAD lista. Por lo tanto, deberemos modificar la unidad de la lista doblemente enlazada para añadir la nueva funcionalidad.
+
+
+  Ejemplo de uso de la función `get_at`:
+  1.  Lista vacía `[ ]`  
+    - `get_at([], 1)`  
+    - Salida esperada: `Indeterminado` (o un valor que indique que la posición no es válida)
+
+  2.  Lista `[1, 2, 3]`
+    - `get_at([1, 2, 3], 1)`  
+    - Salida esperada: `1`
+
+  3.  Lista `[1, 2, 3]`
+    - `get_at([1, 2, 3], 2)`  
+    - Salida esperada: `2`
+
+  4.  Lista `[1, 2, 3]`
+    - `get_at([1, 2, 3], 3)`  
+    - Salida esperada: `3`
+
+  5.  Lista `[1, 2, 3]`
+    - `get_at([1, 2, 3], 4)`  
+    - Salida esperada: `Indeterminado` (o un valor que indique que la posición no es válida)
+
+  6.  Lista `[1, 2, 3]`
+    - `get_at([1, 2, 3], 0)`  
+    - Salida esperada: `Indeterminado` (o un valor que indique que la posición no es válida)
+
+  Al ejecutar el programa principal `listas_ej11.pas`, se deben mostrar los resultados de las pruebas realizadas. Por ejemplo:
+
+  ```
+  Comprobación del método get_at en uListaEnlazadaDoble:
+
+  Test get_at: Lista vacía
+  Valor obtenido = 30280
+  Test get_at: Posición 1
+  Lista: 1 2 3 
+    Resultado valor = 1, Esperado valor = 1, Test Valor: bien.
+    Resultado exito = bien., Esperado exito = bien., Test Exito: bien.
+  Test get_at: Posición media
+  Lista: 1 2 3 
+    Resultado valor = 2, Esperado valor = 2, Test Valor: bien.
+    Resultado exito = bien., Esperado exito = bien., Test Exito: bien.
+  Test get_at: Posición final
+  Lista: 1 2 3 
+    Resultado valor = 3, Esperado valor = 3, Test Valor: bien.
+    Resultado exito = bien., Esperado exito = bien., Test Exito: bien.
+  Test 1 get_at: Posición fuera de rango (mayor)
+  Valor obtenido = 30364
+  Test 2 get_at: Posición fuera de rango (menor)
+  Valor obtenido = 30364
+  ```
+
+  ## Ejercicio 12: Eliminar el elemento del medio en una lista doblemente enlazada
+
+  En este ejercicio, implementaremos un subprograma que elimine el elemento del medio de una lista doblemente enlazada. Si la lista tiene un número par de elementos, no se eliminará ningún elemento. La lista original debe ser modificada para reflejar la eliminación.
+
+  Para realizar este ejercicio, se proporcionan los siguientes archivos:
+  - `uListaEnlazadaDoble.pas`: Implementación de la lista doblemente enlazada. Este fichero contiene la implementación de la lista doblemente enlazada que se utilizará en este ejercicio. No es necesario modificar este archivo.
+  - `listas_ej12.pas`: Programa principal que utiliza la lista doblemente enlazada. Aquí deberás completar la implementación del procedimiento `eliminarElementoMedio`.
+
+  ¿Qué rol tendremos en este ejercicio? Estaremos utilizando la lista doblemente enlazada para realizar operaciones básicas. Por lo tanto, tendremos el "rol" de usuario externo de la unidad. No modificaremos la implementación de la lista doblemente enlazada, sino que utilizaremos las operaciones básicas que nos proporciona.
+
+  Localiza en el archivo `listas_ej12.pas` el procedimiento `eliminarElementoMedio` y completa su implementación. Este procedimiento debe recibir una lista doblemente enlazada y eliminar el elemento del medio si la lista tiene un número impar de elementos.
+
+  Ejemplos de uso del procedimiento `eliminarElementoMedio`:
+
+  1. **Lista con número impar de elementos**:
+    - Lista original: `[1, 2, 3, 4, 5]`
+    - Lista resultante esperada: `[1, 2, 4, 5]`
+
+  2. **Lista con número par de elementos**:
+    - Lista original: `[1, 2, 3, 4]`
+    - Lista resultante esperada: `[1, 2, 3, 4]` (sin cambios)
+
+  3. **Lista con un solo elemento**:
+    - Lista original: `[1]`
+    - Lista resultante esperada: `[]`
+
+  4. **Lista vacía**:
+    - Lista original: `[]`
+    - Lista resultante esperada: `[]`
+
+  Al ejecutar el programa principal `listas_ej12.pas`, se deben mostrar los resultados de las pruebas realizadas. Por ejemplo:
+
+  ```
+  Test lista vacía
+   Lista: 
+   Resultado = , Esperado = , Test: bien.
+  Test lista con elementos pares
+   Lista: 1 2 3 4 
+   Resultado = 1 2 3 4 , Esperado = 1 2 3 4 , Test: bien.
+  Test lista con elementos impares
+   Lista: 1 2 3 4 5 
+   Resultado = 1 2 4 5 , Esperado = 1 2 4 5 , Test: bien.
+  Test lista con un solo elemento
+   Lista: 1 
+   Resultado = , Esperado = , Test: bien.
+  ```
+
+
+  ## Ejercicio 13: Insertar un elemento en una lista doblemente enlazada ordenada
+  En este ejercicio, implementaremos un procedimiento que inserte un elemento en una lista doblemente enlazada ordenada. La lista debe mantenerse ordenada después de la inserción del nuevo elemento.
+
+  Para realizar este ejercicio, se proporcionan los siguientes archivos:
+  - `uListaEnlazadaDobleOrdenada.pas`: Implementación de la lista doblemente enlazada ordenada. Este fichero contiene la implementación de la lista doblemente enlazada ordenada que se utilizará en este ejercicio. Deberás modificar este archivo para añadir la nueva funcionalidad. Debes implementar el procedimiento `insert` que inserta un elemento en la lista doblemente enlazada ordenada. **No puedes usar la función `insert_at_end` para insertar el elemento al final de la lista. Tampoco deberás modificar la estructura de la lista doblemente enlazada ordenada.**
+  - `listas_ej13.pas`: Programa principal que utiliza la lista doblemente enlazada ordenada. No es necesario modificar este archivo.
+
+  ¿Qué rol debes asumir en este ejercicio? Dado que estamos añadiendo nueva funcionalidad a la lista doblemente enlazada ordenada, tu "rol" es el de implementador del TAD lista. Por lo tanto, deberemos modificar la unidad de la lista doblemente enlazada ordenada para añadir la nueva funcionalidad.
+
+  Ejemplo de uso del procedimiento `insert`:
+  1. Lista vacía `[]`
+    - `insert([], 10)`
+    - Salida esperada: `[10]`
+
+  2. Lista `[10, 20, 30]`
+    - `insert([10, 20, 30], 25)`
+    - Salida esperada: `[10, 20, 25, 30]`
+
+  3. Lista `[10, 20, 30]`
+    - `insert([10, 20, 30], 5)`
+    - Salida esperada: `[5, 10, 20, 30]`
+
+  4. Lista `[10, 20, 30]`
+    - `insert([10, 20, 30], 35)`
+    - Salida esperada: `[10, 20, 30, 35]`
+
+  Al ejecutar el programa principal `listas_ej13.pas`, se deben mostrar los resultados de las pruebas realizadas. Por ejemplo:
+
+  ```
+  Test insertar en lista vacia
+    Lista: 
+    Valor a insertar: 10
+    Esperado: 10 
+    Resultado: 10 
+    Test: bien.
+
+  Test insertar en lista correcta final
+    Lista: 10 20 30 
+    Valor a insertar: 40
+    Esperado: 10 20 30 40 
+    Resultado: 10 20 30 40 
+    Test: bien.
+
+  Test insertar en lista correcta principio
+    Lista: 10 20 30 
+    Valor a insertar: 0
+    Esperado: 0 10 20 30 
+    Resultado: 0 10 20 30 
+    Test: bien.
+
+  Test insertar en lista correcta medio
+    Lista: 10 20 30 
+    Valor a insertar: 25
+    Esperado: 10 20 25 30 
+    Resultado: 10 20 25 30 
+    Test: bien.
+
+  Test insertar en lista correcta principio repetido
+    Lista: 10 20 30 
+    Valor a insertar: 10
+    Esperado: 10 10 20 30 
+    Resultado: 10 10 20 30 
+    Test: bien.
+
+  Test insertar en lista correcta final repetido
+    Lista: 10 20 30 
+    Valor a insertar: 30
+    Esperado: 10 20 30 30 
+    Resultado: 10 20 30 30 
+    Test: bien.
+
+  Test insertar en lista correcta medio repetido
+    Lista: 10 20 30 
+    Valor a insertar: 20
+    Esperado: 10 20 20 30 
+    Resultado: 10 20 20 30 
+    Test: bien.
+  ```
+
+  ## Ejercicio 14: Una aplicación de listas de listas doblemente enlazadas
+
+  En este ejercicio deberemos desarrollar una aplicación que permita gestionar las facturas de los clientes. Concretamente, un cliente se identifica por su nombre y podrá tener distintas facturas asociadas. La aplicación permitirá realizar las siguientes operaciones: 
+  - ver si hay facturas en la aplicación
+  - ver si un cliente tiene facturas
+  - obtener las facturas de un cliente
+  - obtener únicamente la siguiente factura de un cliente a pagar (siguiendo un orden FIFO)
+  - pagar todas las facturas de un cliente
+  - pagar la siguiente factura de un cliente
+  - agregar una factura a un cliente
+  - imprimir todas las facturas de todos los clientes
+
+
+  Para hacer este ejercicio, trabajaremos con una lista de listas doblemente enlazadas. Se proporcionará una unidad llamada `uListaDeListas` que contiene la interfaz y la estructura de datos necesarias para manejar una lista de listas. Los estudiantes deberán implementar las funciones y procedimientos definidos en la interfaz.
+
+  ### Archivos proporcionados
+
+  - `uListaDeListas.pas`: Unidad que contiene la definición de la estructura de datos y la interfaz de los procedimientos y funciones que deben ser implementados. **No se debe modificar la interfaz de esta unidad (ni las estructuras ni los métodos).**
+  - `uListaEnlazadaDoble.pas`: Implementación de la lista doblemente enlazada. Este fichero contiene la implementación de la lista doblemente enlazada que se utilizará en este ejercicio. No hay que modificar este archivo.
+  - `listas_ej14.pas`: Programa principal que utiliza la unidad `uListaDeListas` para realizar pruebas y verificar el correcto funcionamiento de las implementaciones. No se debe modificar este archivo.
+  
+
+  ### Estructura de la unidad `uListaDeListas`
+
+  Antes de empezar a resolver el ejercicio es importante que entiendas la estructura de la unidad `uListaDeListas`, ya que es algo que perfectamente podríamos haberos pedido que implementarais desde cero.
+
+  La unidad `uListaDeListas` define una estructura de datos que maneja una lista de listas doblemente enlazadas. La estructura principal es `tListaDeListas`, que contiene punteros al primer y último nodo de la lista, de la misma forma que una lista doblemente enlazada. Abre ambas unidades para comparar su estructura interna. 
+
+  Observa ahora la siguiente imagen. En ella se muestra un esquema de la estructura de la lista de listas doblemente enlazada. En este caso, se han añadido tres personas con sus respectivas facturas. La lista de listas es la lista cuyos nodos tienen una persona y una lista doblemente enlazada de facturas. Esta lista está implementada con una lista doblemente enlazada, por lo que cada nodo tiene un puntero al siguiente y al anterior nodo. La lista de facturas de cada persona también está implementada con una lista doblemente enlazada, por lo que cada nodo tiene un puntero al siguiente y al anterior nodo.
+
+  ![Listas de Listas](figs/ListaDeListas.png)
+
+Por lo tanto, ¿qué hay que hacer en este ejercicio? De la misma manera que antes los nodos almacenaban un valor entero ahora simplemente van a almacenar una lista. Cuando se necesite hacer algo con la lista de los nodos (la lista de facturas) simplemente se accederá a la lista que contiene cada nodo y trabajaremos con ella de la misma manera que hemos hecho en los ejercicios anteriores.
+
+  ### Interfaz de `uListaDeListas`
+
+  La interfaz de la unidad `uListaDeListas` incluye los siguientes procedimientos y funciones:
+
+  - `procedure inicializar(var list: tListaDeListas);`
+    - Inicializa la lista de listas.
+  - `function hay_facturas(list: tListaDeListas): boolean;`
+    - Devuelve `true` si hay facturas en la aplicación, es decir, si la lista de listas no está vacía, es decir, si hay al menos una persona con facturas.
+  - `function hay_facturas_de_persona(list: tListaDeListas; persona: string): boolean;`
+    - Devuelve `true` si la persona tiene facturas asociadas.
+    - Devuelve `false` si la persona no tiene facturas asociadas, es decir, si no está en la lista.
+  - `procedure obtener_facturas_de_persona(list: tListaDeListas; persona: string; var lista: tListaDoble);`
+    - Obtiene las facturas de una persona y las almacena en una lista doblemente enlazada.
+    - ¡Ojito! No podemos devolver la lista directamente, porque entonces si desde fuera de la unidad se modifica la lista, se modificaría la lista original. Por lo tanto, debemos copiar la lista de facturas del cliente a otra lista que será la que se devuelva.
+  - `function obtener_factura_de_persona(list: tListaDeListas; persona: string): integer;`
+    - Obtiene la siguiente factura de un cliente a pagar (siguiendo un orden FIFO).
+    - Si el cliente no tiene facturas, devuelve `0`.
+  - `procedure pagar_facturas_de_persona(var list: tListaDeListas; persona: string);`
+    - Paga todas las facturas de un cliente.
+    - Si el cliente no tiene facturas, no hace nada.
+    - ¡Ojito! Si pagamos todas las facturas, debemos eliminar la lista de facturas del cliente. Es un requisito de la aplicación que si un cliente paga todas sus facturas, se elimine de la lista. En otras implementaciones, podríamos haber optado por mantener la lista vacía, pero en este caso, se pide que se elimine.
+  - `procedure pagar_factura_de_persona(var list: tListaDeListas; persona: string);`
+    - Paga la siguiente factura de un cliente.
+    - Si el cliente no tiene facturas, no hace nada.
+    - De manera similar al método anterior, si pagamos la última factura, debemos eliminar la lista de facturas del cliente.
+  - `procedure agregar_factura_a_persona(var list: tListaDeListas; persona: string; factura: integer);`
+    - Agrega una factura a un cliente.
+    - Si el cliente no está en la lista, se agrega a la lista con la factura.
+    - Si el cliente ya tiene facturas, se agrega la nueva factura al final de la lista de facturas.
+  - `function imprimir_facturas(list: tListaDeListas): string;`
+    - Devuelve una cadena con todas las facturas de todos los clientes.
+    - La cadena debe tener el siguiente formato: `persona1: factura1 factura2 ... persona2: factura1 factura2 ...`
+    - Si no hay facturas, devuelve una cadena vacía.
+
+  ### Implementación
+
+  Los estudiantes deberán implementar las funciones y procedimientos definidos en la interfaz de la unidad `uListaDeListas`. No se permite modificar la interfaz proporcionada.
+
+  ### Resultado esperado
+
+  Al ejecutar el programa principal `listas_ej14.pas`, se deben mostrar los resultados de las pruebas realizadas. Por ejemplo:
+
+  ```
+Prueba de la unidad uListaDeListas
+-----------------------------------
+Lista inicializada.
+hay_facturas (lista vacía): Correcto
+hay_facturas (lista no vacía): Correcto
+Personas y facturas agregadas: to_string (lista con personas y facturas)
+Juan Perez: 100 200 
+Sofia Martinez: 300 400 
+Maria Gomez: 50 75 
+
+
+hay_facturas_de_persona (Juan Perez): Correcto
+hay_facturas_de_persona (Carlos Rodriguez): Correcto
+
+obtener_facturas_de_persona (Maria Gomez) : 50 75 
+
+obtener_factura_de_persona (Juan Perez) : 100
+   Resultado esperado: Correcto
+obtener_factura_de_persona (Maria Gomez) : 50
+   Resultado esperado: Correcto
+obtener_factura_de_persona (Carlos Rodriguez) - persona sin facturas : 0
+   Resultado esperado: Correcto
+
+Se va a pagar la primera factura de Sofia Martinez : 300
+Siguiente factura a pagar de Sofia Martinez : 400
+   Resultado esperado: Correcto
+
+Se va a pagar la primera factura de Sofia Martinez : 400
+Siguiente factura a pagar de Sofia Martinez : 0
+   Resultado esperado: Correcto
+
+Facturas de Juan Perez antes de pagar : 50 75 
+Facturas de Juan Perez después de pagar : 
+Factura de Juan Perez después de pagar: 0
+   Resultado esperado: Correcto
+-----------------------------------
+Fin de la prueba de la unidad uListaDeListas
 ```
