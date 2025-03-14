@@ -86,8 +86,39 @@ implementation
     { ---------------------------- Ejercicio 13 ---------------------------- }
 
     procedure insert(var list: tListaDoble; x: integer);
+    var
+        aux: ^nodo;
+        aux2: ^nodo;
+        nuevo: ^nodo;
     begin
-        WriteLn('No implementado');
+        new(nuevo); // Crea un nuevo nodo
+        nuevo^.info := x; // Asigna la información al nuevo nodo
+        aux := list.first; // Comienza desde el primer nodo
+        while (aux <> nil) and (aux^.info < x) do
+        begin
+            aux2 := aux; // Almacena el nodo actual
+            aux := aux^.sig; // Avanza al siguiente nodo
+        end;
+        if aux = list.first then
+        begin
+            nuevo^.sig := list.first; // El siguiente nodo del nuevo nodo es el primer nodo
+            nuevo^.ant := nil; // El nodo anterior del nuevo nodo es nulo
+            if list.first <> nil then
+                list.first^.ant := nuevo; // Si el primer nodo no es nulo, el nodo anterior del primer nodo es el nuevo nodo
+            list.first := nuevo; // El primer nodo es el nuevo nodo
+            if list.last = nil then
+                list.last := nuevo; // Si el último nodo es nulo, el último nodo es el nuevo nodo
+        end
+        else
+        begin
+            nuevo^.sig := aux; // El siguiente nodo del nuevo nodo es el nodo actual
+            nuevo^.ant := aux2; // El nodo anterior del nuevo nodo es el nodo anterior al nodo actual
+            aux2^.sig := nuevo; // El siguiente nodo del nodo anterior al nodo actual es el nuevo nodo
+            if aux <> nil then
+                aux^.ant := nuevo // Si el nodo actual no es nulo, el nodo anterior del nodo actual es el nuevo nodo
+            else
+                list.last := nuevo; // Si el nodo actual es nulo, el último nodo es el nuevo nodo
+        end;
     end;
 
     { ---------------------------- Fin Ejercicio 13 ---------------------------- }
