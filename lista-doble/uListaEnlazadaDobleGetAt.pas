@@ -208,8 +208,17 @@ implementation
 
     { -- Ejercicio 11 -- }
     function get_at(list: tListaDoble; position: integer): integer;
+    var
+        aux: ^nodo;
+        i: integer;
     begin
-        WriteLn8(' No implementado');
+        if not ((position < 1) or (position > num_elems(list))) then
+        begin
+        aux := list.first; // Comienza desde el primer nodo
+        for i := 1 to position - 1 do
+            aux := aux^.sig; // Avanza al siguiente nodo
+        get_at := aux^.info; // Devuelve la información del nodo
+        end;
     end;
 
 end.
