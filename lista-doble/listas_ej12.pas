@@ -7,7 +7,26 @@ procedure eliminarElementoMedio(var list: tListaDoble);
 var
     size, i, num : integer;
 begin
-    WriteLn('No implementado');
+    if (not is_empty(list)) and (num_elems(list) mod 2 <> 0) then
+    begin
+        size := num_elems(list);
+        if size = 1 then
+        begin
+            delete_at_begin(list);
+        end
+        else
+        begin
+            for i := 1 to size do
+            begin
+                num := first(list);
+                delete_at_begin(list);
+                if i <> (size div 2) + 1 then
+                begin
+                    insert_at_end(list, num);
+                end;
+            end;
+        end;
+    end;
 end;
 
 
